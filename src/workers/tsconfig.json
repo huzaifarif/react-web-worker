@@ -11,6 +11,6 @@
     "noUnusedLocals": true,
     "sourceMap": true,
     "allowJs": false,
-    "baseUrl": "."
+    "baseUrl": "../src"
   }
 }

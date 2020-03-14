@@ -1,9 +1,6 @@
-import { expose } from 'comlink';
-import heavyBlockingLoop from '../components/heavy/heavy-adapter';
+import { wrap } from 'comlink';
 
-const exports = {
-  heavyBlockingLoop
-};
-export type AdapterWorker = typeof exports;
+const worker = new Worker('./combineWorkers', { name: 'heavy-worker', type: 'module' });
+const workerApi = wrap<import('./combineWorkers').AdapterWorker>(worker);
 
-expose(exports);
+export default workerApi;

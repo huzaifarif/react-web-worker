@@ -1,14 +1,8 @@
-const heavyBlockingLoop = async () => {
-  console.log('Start our long running job...');
-  const seconds = 5;
-  const start = new Date().getTime();
-  const delay = seconds * 1000;
+import syncDelay from 'Utils/syncDelay';
 
-  while (true) {
-    if ((new Date().getTime() - start) > delay) {
-      break;
-    }
-  }
+const heavyBlockingLoop = () => {
+  console.log('Start our long running job...');
+  syncDelay();
   console.log('Finished our long running job');
 }
 

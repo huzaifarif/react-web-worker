@@ -1,5 +1,5 @@
 import React from 'react';
-import HeavyComponent from './components/heavy/heavy';
+import HeavyComponent from './Components/heavy/heavy';
 import './App.css';
 
 function App() {
