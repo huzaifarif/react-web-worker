@@ -1,6 +1,16 @@
-import { wrap } from 'comlink';
+import { wrap, releaseProxy } from 'comlink';
 
-const worker = new Worker('./combineWorkers', { name: 'heavy-worker', type: 'module' });
-const workerApi = wrap<import('./combineWorkers').AdapterWorker>(worker);
+const makeWorkerApiAndCleanup = () => {
+  const worker = new Worker('./combineWorkers', { name: 'heavy-worker', type: 'module' });
+  const workerApi = wrap<import('./combineWorkers').AdapterWorker>(worker);
+  
+  // A cleanup function that releases the comlink proxy and terminates the worker
+  const cleanup = () => {
+    workerApi[releaseProxy]();
+    worker.terminate();
+  };
 
-export default workerApi;
+  return { workerApi, cleanup };
+};
+
+export default makeWorkerApiAndCleanup;

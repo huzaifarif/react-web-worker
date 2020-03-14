@@ -1,11 +1,11 @@
 import React from 'react';
-import HeavyComponent from './Components/heavy/heavy';
+import Routes from './routes';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <HeavyComponent />
+      <Routes />
     </div>
   );
 }
